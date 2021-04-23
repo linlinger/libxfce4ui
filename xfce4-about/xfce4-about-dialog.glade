@@ -246,7 +246,7 @@ NO WARRANTY
   <object class="GtkTextBuffer" id="vendor-buffer"/>
   <object class="XfceTitledDialog" id="window">
     <property name="can-focus">False</property>
-    <property name="title" translatable="yes">About the Xfce Desktop Environment</property>
+    <property name="title" translatable="yes">关于SpanningTree Linux</property>
     <property name="default-width">550</property>
     <property name="default-height">600</property>
     <property name="icon-name">org.xfce.about</property>
@@ -265,7 +265,6 @@ NO WARRANTY
             <child>
               <object class="GtkButton" id="help-button">
                 <property name="label">gtk-help</property>
-                <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
                 <property name="use-underline">True</property>
@@ -623,8 +622,11 @@ NO WARRANTY
                           <object class="GtkLabel">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="label" translatable="yes">Thank You for choosing SpanningTree Linux
-- SpanningTree Linux Team</property>
+                            <property name="label" translatable="yes">
+
+感谢您使用SpanningTree Linux
+
+SpanningTree LInux团队</property>
                             <property name="wrap">True</property>
                             <property name="xalign">0</property>
                           </object>

@@ -123,6 +123,112 @@ xfce_about_system (GtkBuilder *builder)
 
 
 
+static void
+xfce_about_about (GtkWidget *vbox)
+{
+  guint                i;
+  AboutModules        *info;
+  static AboutModules  xfce_about_info[] =
+    {
+      { "xfwm4",
+        "org.xfce.xfwm4",
+        N_("Window Manager"),
+        N_("Handles the placement of windows on the screen.")
+      },
+      { "xfce4-panel",
+        "org.xfce.panel",
+        N_("Panel"),
+        N_("Provides a home for window buttons, launchers, app menu and more.")
+      },
+      { "xfdesktop",
+        "org.xfce.xfdesktop",
+        N_("Desktop Manager"),
+        N_("Sets desktop backgrounds, handles icons and more.")
+      },
+      { "thunar",
+        "org.xfce.thunar",
+        N_("File Manager"),
+        N_("Manages your files in a modern, easy-to-use and fast way.")
+      },
+      { "thunar-volman",
+        "org.xfce.volman",
+        N_("Volume Manager"),
+        N_("Manages removable drives and media for Thunar.")
+      },
+      { "xfce4-session",
+        "org.xfce.session",
+        N_("Session Manager"),
+        N_("Saves and restores your session, handles startup, autostart and shutdown.")
+      },
+      { "xfce4-settings",
+        "org.xfce.settings.manager",
+        N_("Setting System"),
+        N_("Configures appearance, display, keyboard and mouse settings.")
+      },
+      { "xfce4-appfinder",
+        "org.xfce.appfinder",
+        N_("Application Finder"),
+        N_("Quickly finds and launches applications installed on your system.")
+      },
+      { "xfconf",
+        "org.xfce.settings.editor",
+        N_("Settings Daemon"),
+        N_("Stores your settings in a D-Bus-based configuration system.")
+      },
+      { "garcon",
+        "org.xfce.garcon",
+        N_("A Menu Library"),
+        N_("Implements a freedesktop.org compliant menu based on GLib and GIO.")
+      },
+      { "tumbler",
+        "org.xfce.tumbler",
+        N_("Thumbnails Service"),
+        N_("Implements the thumbnail management D-Bus specification.")
+      }
+    };
+
+  g_return_if_fail (GTK_IS_BOX (vbox));
+
+  for (i = 0; i < G_N_ELEMENTS (xfce_about_info); i++)
+    {
+      GtkWidget     *grid;
+      GtkWidget     *image;
+      GtkWidget     *component;
+      GtkWidget     *description;
+      const gchar   *format;
+      gchar         *str;
+
+      info = xfce_about_info + i;
+      format = "<b>%s</b> (<a href='%s%s%s'>%s</a>)";
+      str = g_markup_printf_escaped (format, _(info->display_name), DOCS_URL,
+                                     info->name, DOCS_URL_SLUG, info->name);
+
+      component = gtk_label_new (NULL);
+      gtk_label_set_markup (GTK_LABEL (component), str);
+      gtk_label_set_xalign (GTK_LABEL (component), 0.0);
+      gtk_label_set_line_wrap (GTK_LABEL (component), TRUE);
+      gtk_widget_set_valign (GTK_WIDGET (component), GTK_ALIGN_END);
+
+      description = gtk_label_new (_(info->description));
+      gtk_label_set_xalign (GTK_LABEL (description), 0.0);
+      gtk_label_set_line_wrap (GTK_LABEL (description), TRUE);
+      gtk_widget_set_valign (GTK_WIDGET (description), GTK_ALIGN_START);
+
+      image = gtk_image_new_from_icon_name (info->icon_name, GTK_ICON_SIZE_DND);
+
+      grid = gtk_grid_new ();
+      gtk_grid_set_column_spacing (GTK_GRID (grid), 12);
+      gtk_grid_set_row_spacing (GTK_GRID (grid), 3);
+      gtk_grid_attach (GTK_GRID (grid), image, 0, 0, 1, 2);
+      gtk_grid_attach (GTK_GRID (grid), component, 1, 0, 1, 1);
+      gtk_grid_attach (GTK_GRID (grid), description, 1, 1, 1, 1);
+      gtk_widget_show_all (grid);
+
+      gtk_container_add (GTK_CONTAINER (vbox), grid);
+
+      g_free (str);
+    }
+}
 
 
 
@@ -415,6 +521,7 @@ main (gint    argc,
 #endif
 
   object = gtk_builder_get_object (builder, "components-box");
+  xfce_about_about (GTK_WIDGET (object));
 
   object = gtk_builder_get_object (builder, "credits-buffer");
   xfce_about_credits (GTK_TEXT_BUFFER (object));
