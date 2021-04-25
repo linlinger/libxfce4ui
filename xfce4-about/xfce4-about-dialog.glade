@@ -249,7 +249,7 @@ NO WARRANTY
     <property name="title" translatable="yes">关于SpanningTree Linux</property>
     <property name="default-width">550</property>
     <property name="default-height">600</property>
-    <property name="icon-name">org.xfce.about</property>
+    <property name="icon-name">stos-logo</property>
     <property name="type-hint">normal</property>
     <child internal-child="vbox">
       <object class="GtkBox" id="dialog-vbox1">
@@ -610,7 +610,7 @@ NO WARRANTY
                             <property name="margin-top">12</property>
                             <property name="margin-bottom">12</property>
                             <property name="pixel-size">128</property>
-                            <property name="icon-name">xfce4-logo</property>
+                            <property name="icon-name">stos-logo</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -626,7 +626,7 @@ NO WARRANTY
 
 感谢您使用SpanningTree Linux
 
-SpanningTree LInux团队</property>
+SpanningTree Linux团队</property>
                             <property name="wrap">True</property>
                             <property name="xalign">0</property>
                           </object>
